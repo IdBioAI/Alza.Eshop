@@ -1,4 +1,7 @@
+using Alza.DbContexts;
 using Alza.Infrastructure.Operations.Transient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<ProductOperation>();
+var configuration = builder.Configuration;
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+     options.UseSqlServer(configuration.GetConnectionString("AlzaShopDbContext")));
+
+builder.Services.AddTransient<IProductOperation, ProductOperation>();
+
 
 var app = builder.Build();
 

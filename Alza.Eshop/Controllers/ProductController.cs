@@ -7,10 +7,10 @@ namespace Alza.Web.Controllers
 {
     [Route("api/v1/products")]
     [ApiController]
-    public class ProductController(ProductOperation productOperation) : ControllerBase
+    public class ProductController(IProductOperation productOperation) : ControllerBase
     {
 
-        private readonly ProductOperation productOperation = productOperation;
+        private readonly IProductOperation productOperation = productOperation;
 
         /// <summary>
         /// List all available products with pagination support

@@ -7,7 +7,14 @@ using System.Threading.Tasks;
 
 namespace Alza.Infrastructure.Operations.Transient
 {
-    public class ProductOperation
+    public interface IProductOperation
+    {
+        ProductResponse GetProducts(ProductRequest productRequest);
+        ProductDto GetProductById(int productId);
+        void UpdateProductDescriptionById(int productId, string description);
+    }
+
+    public class ProductOperation : IProductOperation
     {
         public ProductResponse GetProducts(ProductRequest productRequest)
         {
@@ -23,6 +30,5 @@ namespace Alza.Infrastructure.Operations.Transient
         {
             
         }
-
     }
 }

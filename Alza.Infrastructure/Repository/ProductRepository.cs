@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Alza.Infrastructure.Repository
 {
-    internal class ProductRepository
+    public interface IProductRepository
+    {
+
+    }
+
+    public class ProductRepository
     {
     }
 }

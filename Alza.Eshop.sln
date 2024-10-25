@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Web", "Alza.Eshop\Alza
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Infrastructure", "Alza.Infrastructure\Alza.Infrastructure.csproj", "{D41CB080-8D7B-4500-819F-EAE21D249584}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.DbContexts", "Alza.DbContexts\Alza.DbContexts.csproj", "{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D41CB080-8D7B-4500-819F-EAE21D249584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D41CB080-8D7B-4500-819F-EAE21D249584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D41CB080-8D7B-4500-819F-EAE21D249584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
