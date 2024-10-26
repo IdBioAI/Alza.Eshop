@@ -1,13 +1,12 @@
 ﻿using Alza.Infrastructure.Dto.Product;
 using Alza.Infrastructure.Operations.Transient;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alza.Web.Controllers
 {
     [Route("api/v1/products")]
     [ApiController]
-    public class ProductController(IProductOperation productOperation) : ControllerBase
+    public class ProductController(IProductOperation productOperation) : CommonController
     {
 
         private readonly IProductOperation productOperation = productOperation;
@@ -16,27 +15,27 @@ namespace Alza.Web.Controllers
         /// List all available products with pagination support
         /// </summary>
         [HttpPost]
-        public ProductResponse GetProducts(ProductRequest productRequest)
+        public async Task<IActionResult> GetProducts(ProductRequest productRequest)
         {
-            return productOperation.GetProducts(productRequest);
+            return HandleResponse<ProductResponse>(await productOperation.GetProducts(productRequest));
         }
 
         /// <summary>
         /// Get one product by product Id
         /// </summary>
         [HttpGet("{productId}")]
-        public ProductDto GetProductById(int productId)
+        public async Task<IActionResult> GetProductById(int productId)
         {
-            return productOperation.GetProductById(productId);
+            return HandleResponse<ProductDto>(await productOperation.GetProductById(productId));
         }
 
         /// <summary>
         /// Update product description only by product Id
         /// </summary>
         [HttpPatch("{productId}")]
-        public void UpdateProductDescriptionById(int productId, string description)
+        public async Task<IActionResult> UpdateProductDescriptionById(int productId, string description)
         {
-            productOperation.UpdateProductDescriptionById(productId, description);
+            return HandleResponse(await productOperation.UpdateProductDescriptionById(productId, description));
         }
 
     }

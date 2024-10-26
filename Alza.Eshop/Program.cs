@@ -1,5 +1,6 @@
 using Alza.DbContexts;
 using Alza.Infrastructure.Operations.Transient;
+using Alza.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -16,6 +17,8 @@ var configuration = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
      options.UseSqlServer(configuration.GetConnectionString("AlzaShopDbContext")));
 
+builder.Services.AddTransient<IProductOperation, ProductOperation>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductOperation, ProductOperation>();
 
 
