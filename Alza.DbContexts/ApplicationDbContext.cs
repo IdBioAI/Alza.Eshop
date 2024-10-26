@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Alza.DbContexts.Models;
+﻿using Alza.DbContexts.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alza.DbContexts;
@@ -27,17 +25,9 @@ public partial class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasNoKey();
-
-            entity.HasIndex(e => e.Id, "PK_id").IsUnique();
-
-            entity.Property(e => e.Description).UseCollation("SQL_Latin1_General_CP1_CI_AS");
-            entity.Property(e => e.ImgUri)
-                .HasMaxLength(2048)
-                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
-            entity.Property(e => e.Name)
-                .HasMaxLength(255)
-                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.ImgUri).HasMaxLength(2048);
+            entity.Property(e => e.Name).HasMaxLength(255);
             entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
         });
 

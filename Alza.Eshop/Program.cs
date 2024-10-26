@@ -15,11 +15,10 @@ builder.Services.AddSwaggerGen();
 
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-     options.UseSqlServer(configuration.GetConnectionString("AlzaShopDbContext")));
+     options.UseSqlServer(configuration.GetConnectionString("AlzaShopDbContext")).UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll));
 
 builder.Services.AddTransient<IProductOperation, ProductOperation>();
-builder.Services.AddTransient<IProductRepository, ProductRepository>();
-builder.Services.AddTransient<IProductOperation, ProductOperation>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
 var app = builder.Build();

@@ -1,4 +1,7 @@
-﻿namespace Alza.DbContexts.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace Alza.DbContexts.zjuModels;
 
 public partial class Product
 {

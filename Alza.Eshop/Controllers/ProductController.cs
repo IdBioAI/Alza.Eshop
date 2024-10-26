@@ -32,10 +32,10 @@ namespace Alza.Web.Controllers
         /// <summary>
         /// Update product description only by product Id
         /// </summary>
-        [HttpPatch("{productId}")]
-        public async Task<IActionResult> UpdateProductDescriptionById(int productId, string description)
+        [HttpPatch("{productId}/description")]
+        public async Task<IActionResult> UpdateProductDescriptionById(int productId, UpdateDescriptionDto updateDescription)
         {
-            return HandleResponse(await productOperation.UpdateProductDescriptionById(productId, description));
+            return HandleResponse(await productOperation.UpdateProductDescriptionById(productId, updateDescription.Description));
         }
 
     }
