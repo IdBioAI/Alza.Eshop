@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-     options.UseSqlServer(configuration.GetConnectionString("AlzaShopDbContext")).UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll));
+     options.UseSqlServer(configuration.GetConnectionString("AlzaShopDbContext")));
 
 builder.Services.AddTransient<IProductOperation, ProductOperation>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();

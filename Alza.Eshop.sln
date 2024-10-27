@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Infrastructure", "Alza
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.DbContexts", "Alza.DbContexts\Alza.DbContexts.csproj", "{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Tests.Unit", "Alza.Tests.Unit\Alza.Tests.Unit.csproj", "{3B2DB300-22FE-44C1-A231-FB78EB1C74CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D7C5DF3-C3CF-4770-AF6A-1B1695F95B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2DB300-22FE-44C1-A231-FB78EB1C74CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2DB300-22FE-44C1-A231-FB78EB1C74CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2DB300-22FE-44C1-A231-FB78EB1C74CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2DB300-22FE-44C1-A231-FB78EB1C74CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
