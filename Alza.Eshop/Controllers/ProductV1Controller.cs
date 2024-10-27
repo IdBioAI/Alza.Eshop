@@ -15,7 +15,7 @@ namespace Alza.Web.Controllers
         /// <summary>
         /// List all available products
         /// </summary>
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(typeof(ProductResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetProducts()
