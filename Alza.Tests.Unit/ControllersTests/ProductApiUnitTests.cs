@@ -23,25 +23,21 @@ namespace Alza.Tests.Unit.ControllersTests
         }
 
         [Fact]
-        public async Task GetProducts()
+        public async Task ApiV1GetProducts()
         {
             // Arrange
-            var productOperation = new ProductOperation(baseUnitTest.ServiceProvider.GetRequiredService<IProductRepository>(),
+            var productV1Operation = new ProductV1Operation(baseUnitTest.ServiceProvider.GetRequiredService<IProductRepository>(),
                                                         baseUnitTest.ServiceProvider.GetRequiredService<ApplicationDbContext>());
-            var controller = new ProductController(productOperation);
+            var controller = new ProductV1Controller(productV1Operation);
 
             // Act
-            var result = await controller.GetProducts(new ProductRequest()
-            {
-                Page = 2,
-                PageSize = 10
-            });
+            var result = await controller.GetProducts();
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
             var productResponse = Assert.IsType<ProductResponse>(okResult.Value);
 
-            var product = productResponse.ProductList.FirstOrDefault();
+            var product = productResponse.ProductList.Skip(10).FirstOrDefault();
             Assert.Equal(11, product?.Id);
             Assert.Equal("Product name 11", product?.Name);
             Assert.Equal("https://example.com/image11.jpg", product?.ImgUri);
@@ -50,11 +46,11 @@ namespace Alza.Tests.Unit.ControllersTests
         }
 
         [Fact]
-        public async Task GetProductById()
+        public async Task ApiV1GetProductById()
         {
-            var productOperation = new ProductOperation(baseUnitTest.ServiceProvider.GetRequiredService<IProductRepository>(),
+            var productOperation = new ProductV1Operation(baseUnitTest.ServiceProvider.GetRequiredService<IProductRepository>(),
                                                         baseUnitTest.ServiceProvider.GetRequiredService<ApplicationDbContext>());
-            var controller = new ProductController(productOperation);
+            var controller = new ProductV1Controller(productOperation);
 
 
             var result = await controller.GetProductById(16);
@@ -70,13 +66,13 @@ namespace Alza.Tests.Unit.ControllersTests
         }
 
         [Fact]
-        public async Task UpdateProductDescriptionById()
+        public async Task ApiV1UpdateProductDescriptionById()
         {
             int productId = 3;
 
-            var productOperation = new ProductOperation(baseUnitTest.ServiceProvider.GetRequiredService<IProductRepository>(),
+            var productOperation = new ProductV1Operation(baseUnitTest.ServiceProvider.GetRequiredService<IProductRepository>(),
                                                         baseUnitTest.ServiceProvider.GetRequiredService<ApplicationDbContext>());
-            var controller = new ProductController(productOperation);
+            var controller = new ProductV1Controller(productOperation);
 
             // generate short random text
             const string chars = "abcdefghijklmnopqrstuvwxyz";
@@ -98,6 +94,32 @@ namespace Alza.Tests.Unit.ControllersTests
 
             Assert.Equal(productId, product.Id);
             Assert.Equal(res.ToString(), product.Description);
+        }
+
+        [Fact]
+        public async Task ApiV2GetProducts()
+        {
+            // Arrange
+            var productV2Operation = new ProductV2Operation(baseUnitTest.ServiceProvider.GetRequiredService<IProductRepository>());
+            var controller = new ProductV2Controller(productV2Operation);
+
+            // Act
+            var result = await controller.GetProducts(new ProductRequest()
+            {
+                Page = 2,
+                PageSize = 10
+            });
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var productResponse = Assert.IsType<ProductResponse>(okResult.Value);
+
+            var product = productResponse.ProductList.FirstOrDefault();
+            Assert.Equal(11, product?.Id);
+            Assert.Equal("Product name 11", product?.Name);
+            Assert.Equal("https://example.com/image11.jpg", product?.ImgUri);
+            Assert.Equal(789, product?.Price);
+            Assert.Equal("Product description 11", product?.Description);
         }
     }
 }

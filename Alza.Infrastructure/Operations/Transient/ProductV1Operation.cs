@@ -11,29 +11,25 @@ using System.Net;
 
 namespace Alza.Infrastructure.Operations.Transient
 {
-    public interface IProductOperation
+    public interface IProductV1Operation
     {
-        Task<CommonResponseStatus<ProductResponse>> GetProducts(ProductRequest productRequest);
+        Task<CommonResponseStatus<ProductResponse>> GetProducts();
         Task<CommonResponseStatus<ProductDto>> GetProductById(int productId);
         Task<CommonResponseStatus> UpdateProductDescriptionById(int productId, string description);
     }
 
-    public class ProductOperation(IProductRepository productRepository, ApplicationDbContext applicationDbContext) : IProductOperation
+    public class ProductV1Operation(IProductRepository productRepository, ApplicationDbContext applicationDbContext) : IProductV1Operation
     {
         private readonly IProductRepository productRepository = productRepository;
         private readonly ApplicationDbContext applicationDbContext = applicationDbContext;
 
-        public async Task<CommonResponseStatus<ProductResponse>> GetProducts(ProductRequest productRequest)
+        public async Task<CommonResponseStatus<ProductResponse>> GetProducts()
         {
             try
             {
                 // check valid values
-                if (productRequest.Page <= 0 || (productRequest.PageSize.HasValue && productRequest.PageSize <= 0))
-                {
-                    return ResponseHelper.CreateResponse<ProductResponse>(null, HttpStatusCode.BadRequest, "Invalid values for Page and/or PageSize. Page must be greater than 0 and PageSize must be a positive number.");
-                }
 
-                var productModels = await productRepository.GetProducts(productRequest.Page, productRequest.PageSize ?? SearchConstants.ProductPageSize);
+                var productModels = await productRepository.GetProducts();
 
                 return ResponseHelper.CreateResponse<ProductResponse>(new ProductResponse()
                 {

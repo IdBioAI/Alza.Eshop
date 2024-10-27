@@ -1,5 +1,6 @@
 ﻿using Alza.DbContexts;
 using Alza.DbContexts.Models;
+using Azure;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alza.Infrastructure.Repository
@@ -7,6 +8,7 @@ namespace Alza.Infrastructure.Repository
     public interface IProductRepository
     {
         Task<List<Product>> GetProducts(int page, int pageSize);
+        Task<List<Product>> GetProducts();
         Task<Product?> GetProductById(int productId);
     }
 
@@ -17,6 +19,11 @@ namespace Alza.Infrastructure.Repository
         public async Task<List<Product>> GetProducts(int page, int pageSize)
         {
             return await applicationDbContext.Products.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public async Task<List<Product>> GetProducts()
+        {
+            return await applicationDbContext.Products.ToListAsync();
         }
 
         public async Task<Product?> GetProductById(int productId)
