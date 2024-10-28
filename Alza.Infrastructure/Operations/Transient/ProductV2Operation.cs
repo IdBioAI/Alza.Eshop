@@ -23,6 +23,10 @@ namespace Alza.Infrastructure.Operations.Transient
             try
             {
                 // check valid values
+                if (productRequest.Page <= 0 || (productRequest.PageSize.HasValue && productRequest.PageSize <= 0))
+                {
+                    return ResponseHelper.CreateResponse<ProductResponse>(null, HttpStatusCode.BadRequest, "Invalid values for Page and/or PageSize. Page must be greater than 0 and PageSize must be a positive number.");
+                }
 
                 var productModels = await productRepository.GetProducts(productRequest.Page, productRequest.PageSize ?? SearchConstants.ProductPageSize);
 

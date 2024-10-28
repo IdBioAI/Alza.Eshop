@@ -48,8 +48,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Alza.DbContexts\Alza.DbContexts.csproj" />
-    <ProjectReference Include="..\Alza.Eshop\Alza.Web.csproj" />
     <ProjectReference Include="..\Alza.Infrastructure\Alza.Infrastructure.csproj" />
+    <ProjectReference Include="..\Alza.Web\Alza.Web.csproj" />
   </ItemGroup>
 
 </Project>

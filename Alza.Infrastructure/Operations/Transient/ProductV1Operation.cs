@@ -27,8 +27,6 @@ namespace Alza.Infrastructure.Operations.Transient
         {
             try
             {
-                // check valid values
-
                 var productModels = await productRepository.GetProducts();
 
                 return ResponseHelper.CreateResponse<ProductResponse>(new ProductResponse()
