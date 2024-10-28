@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Web", "Alza.Eshop\Alza.Web.csproj", "{750B2DB7-B1B4-40E0-995A-0234F593F421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Web", "Alza.Web\Alza.Web.csproj", "{750B2DB7-B1B4-40E0-995A-0234F593F421}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alza.Infrastructure", "Alza.Infrastructure\Alza.Infrastructure.csproj", "{D41CB080-8D7B-4500-819F-EAE21D249584}"
 EndProject
